@@ -33,7 +33,9 @@ class YouTubeDownloader:
         folder_frame = ttk.Frame(root)
         folder_frame.pack(fill="x", padx=15, pady=5)
         ttk.Label(folder_frame, text="Save to:").pack(side="left")
-        self.folder_var = tk.StringVar(value=os.path.join(os.path.expanduser("~"), "Downloads"))
+        default_folder = os.path.join(os.path.expanduser("~"), "Downloads", "YouTube Downloads")
+        os.makedirs(default_folder, exist_ok=True)
+        self.folder_var = tk.StringVar(value=default_folder)
         ttk.Entry(folder_frame, textvariable=self.folder_var, width=45).pack(side="left", padx=(10, 5))
         ttk.Button(folder_frame, text="Browse", command=self.browse_folder).pack(side="left")
 
